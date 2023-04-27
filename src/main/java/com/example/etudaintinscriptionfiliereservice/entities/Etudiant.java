@@ -23,4 +23,7 @@ public class Etudiant {
     private long tel;
     private String ville;
     private String adress;
+    //@OneToOne(mappedBy = "etudiant")
+   // private List<Inscription> inscriptionList;
+
 }
