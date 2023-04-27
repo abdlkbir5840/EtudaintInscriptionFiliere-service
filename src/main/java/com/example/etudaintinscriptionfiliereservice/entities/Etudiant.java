@@ -17,7 +17,8 @@ public class Etudiant {
     private Long id;
     @Column(unique = true)
     private long apogee;
-    private String name;
+    private String nom;
+    private String prenom;
     private String email;
     private Date dateNaissance;
     private long tel;
