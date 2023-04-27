@@ -36,15 +36,15 @@ public class EtudiantServiceImpl implements EtudiantService {
         return etudiantMapper.fromModel(etudiantRepository.findAll());
     }
 
-
+    //Verifier
     @Override
     public ResponseEtudiantDTO getEtudiantById(String idEtudiant) throws EntityNotFoundException {
-        Etudiant etudiant=etudiantRepository.findById(idEtudiant).orElseThrow(()->new EntityNotFoundException("L' ID: "+idEtudiant+"n'existe pas"));
+        Etudiant etudiant=etudiantRepository.findById(Long.valueOf(idEtudiant)).orElseThrow(()->new EntityNotFoundException("L' ID: "+idEtudiant+"n'existe pas"));
         return etudiantMapper.fromModel(etudiant);
    }
     //prob re voire
     @Override
-    public ResponseEtudiantDTO getEtudiantByApogee(long apogee) throws EntityNotFoundException{
+    public ResponseEtudiantDTO getEtudiantByApogee(String apogee) throws EntityNotFoundException{
         Optional<Etudiant> etudiant = Optional.ofNullable(etudiantRepository.findByApogee(apogee));
         if(!etudiant.isPresent()) throw new EntityNotFoundException("L' APOGEE: "+apogee+"n'existe pas");
         return etudiantMapper.fromModel(etudiant.get());
@@ -72,49 +72,6 @@ public class EtudiantServiceImpl implements EtudiantService {
         etudiantRepository.deleteById(etudiantId);
     }
 
-
-       /* private EtudiantRepository etudiantRepository;
-
-        public List<Etudiant> getAllEtudiants() {
-            return etudiantRepository.findAll();
-        }
-
-        public Etudiant getEtudiantById(long id) throws EntityNotFoundException {
-            return etudiantRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Etudiant non trouvé"));
-        }
-
-        public Etudiant addEtudiant(RequestEtudiantDTo requestEtudiantDTo) {
-            Etudiant etudiant = new Etudiant();
-            etudiant.setNom(requestEtudiantDTo.getNom());
-            etudiant.setPrenom(requestEtudiantDTo.getPrenom());
-            etudiant.setApogee(requestEtudiantDTo.getApogee());
-            return etudiantRepository.save(etudiant);
-        }
-
-    @Override
-    public ResponseEtudiantDTO UpdateEtudiant(RequestEtudiantDTo requestEtudiantDTo) {
-        return null;
-    }
-
-    public Etudiant updateEtudiant(RequestEtudiantDTo requestEtudiantDTo) throws EntityNotFoundException {
-            Etudiant etudiant = etudiantRepository.findById(requestEtudiantDTo.getId()).orElseThrow(() -> new EntityNotFoundException("Etudiant non trouvé"));
-            etudiant.setNom(requestEtudiantDTo.getNom());
-            etudiant.setPrenom(requestEtudiantDTo.getPrenom());
-            etudiant.setApogee(requestEtudiantDTo.getApogee());
-            return etudiantRepository.save(etudiant);
-        }
-
-        public ResponseEtudiantDTO getEtudiantByApogee(long apogee) {
-            return etudiantRepository.findByApogee(apogee);
-        }
-
-        public void deleteEtudiant(long etudiantId) throws EntityNotFoundException {
-            if (etudiantRepository.existsById(etudiantId)) {
-                etudiantRepository.deleteById(etudiantId);
-            } else {
-                throw new EntityNotFoundException("Etudiant non trouvé");
-            }
-        }*/
     }
 
 

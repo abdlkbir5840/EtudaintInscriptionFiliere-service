@@ -17,12 +17,12 @@ public class Etudiant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     @Column(unique = true)
-    private long apogee;
+    private String apogee;
     private String nom;
     private String prenom;
     private String email;
     private Date dateNaissance;
-    private long tel;
+    private Long tel;
     private String ville;
     private String adress;
     @OneToOne(mappedBy = "etudiant")

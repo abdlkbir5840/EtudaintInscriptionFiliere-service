@@ -5,11 +5,11 @@ import lombok.Data;
 @Data
 public class RequestEtudiantDTo {
     private String id;
-    private long apogee;
+    private String apogee;
     private String nom;
     private String prenom;
     private String lastname;
-    private long tel;
+    private Long tel;
     private String ville;
     private String adress;
 }

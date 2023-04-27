@@ -6,10 +6,10 @@ import lombok.Data;
 public class ResponseEtudiantDTO {
 
     private String id;
-    private long apogee;
+    private String apogee;
     private String firstname;
     private String lastname;
-    private long tel;
+    private Long tel;
     private String ville;
     private String adress;
 }
