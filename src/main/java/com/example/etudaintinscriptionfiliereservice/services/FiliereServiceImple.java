@@ -1,4 +1,4 @@
-package com.example.etudaintinscriptionfiliereservice.services.implement;
+package com.example.etudaintinscriptionfiliereservice.services;
 
 import com.example.etudaintinscriptionfiliereservice.dtos.FiliereRequestDto;
 import com.example.etudaintinscriptionfiliereservice.dtos.FiliereResponseDto;

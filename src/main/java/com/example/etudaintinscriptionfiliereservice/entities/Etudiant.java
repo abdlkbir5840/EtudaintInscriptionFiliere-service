@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -24,7 +25,7 @@ public class Etudiant {
     private long tel;
     private String ville;
     private String adress;
-    //@OneToOne(mappedBy = "etudiant")
-   // private List<Inscription> inscriptionList;
+    @OneToOne(mappedBy = "etudiant")
+    private Inscription inscriptions;
 
 }
