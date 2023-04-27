@@ -35,7 +35,7 @@ public class FiliereRestApiImpl implements FiliereRestApi {
                             array = @ArraySchema(schema = @Schema(implementation = FiliereResponseDto.class)))}),
             @ApiResponse(responseCode = "204", description = "No filieres found")
     })
-    @GetMapping
+    @Override
     public List<FiliereResponseDto> getAll() {
         return filiereService.getAll();
     }
@@ -47,7 +47,7 @@ public class FiliereRestApiImpl implements FiliereRestApi {
                             schema = @Schema(implementation = FiliereResponseDto.class))}),
             @ApiResponse(responseCode = "404", description = "Filiere not found")
     })
-    @GetMapping("/{id}")
+    @Override
     public FiliereResponseDto findFilierById(@PathVariable String id) {
         return filiereService.getFiliereById(id);
     }
@@ -60,7 +60,7 @@ public class FiliereRestApiImpl implements FiliereRestApi {
             @ApiResponse(responseCode = "404", description = "Filiere not found"),
             @ApiResponse(responseCode = "400", description = "Invalid filiere name")
     })
-    @GetMapping("/name/{name}")
+    @Override
     public FiliereResponseDto findFilierByName(@PathVariable String name) throws MethodArgumentNotValidException {
         return filiereService.getFiliereByNmae(name);
     }
@@ -73,7 +73,7 @@ public class FiliereRestApiImpl implements FiliereRestApi {
             @ApiResponse(responseCode = "400", description = "Invalid filiere data"),
             @ApiResponse(responseCode = "409", description = "Filiere already exists")
     })
-    @PostMapping
+    @Override
     public FiliereResponseDto add(@RequestBody @Valid FiliereRequestDto filiereRequestDto) {
         return filiereService.save(filiereRequestDto);
     }

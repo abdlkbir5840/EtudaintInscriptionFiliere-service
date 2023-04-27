@@ -10,9 +10,9 @@ import java.util.List;
 public interface FiliereRestApi {
     @GetMapping
     List<FiliereResponseDto> getAll();
-    @GetMapping(path = "/find/id/{id}")
+    @GetMapping(path = "/id/{id}")
     FiliereResponseDto findFilierById(@PathVariable String id);
-    @GetMapping(path = "/find/name/{name}")
+    @GetMapping(path = "/name/{name}")
     FiliereResponseDto findFilierByName(@PathVariable String name) throws MethodArgumentNotValidException;
     @PostMapping
     FiliereResponseDto add(@RequestBody FiliereRequestDto filiereRequestDto);
