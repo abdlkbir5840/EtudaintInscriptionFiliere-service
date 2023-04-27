@@ -11,11 +11,11 @@ import java.util.List;
 public interface EtudiantService {
 
 
-    List<Etudiant> getAllEtudiants();
-    ResponseEtudiantDTO getEtudiantById(long id) throws EntityNotFoundException ;
+    List<ResponseEtudiantDTO> getAllEtudiants();
+    ResponseEtudiantDTO getEtudiantById(String id) throws EntityNotFoundException ;
     ResponseEtudiantDTO getEtudiantByApogee(long apogee);
-    Etudiant addEtudiant(RequestEtudiantDTo requestEtudiantDTo)throws EntityAlreadyExistException;
-    ResponseEtudiantDTO UpdateEtudiant(RequestEtudiantDTo requestEtudiantDTo);
+    ResponseEtudiantDTO addEtudiant(RequestEtudiantDTo requestEtudiantDTo)throws EntityAlreadyExistException;
+    ResponseEtudiantDTO updateEtudiant(RequestEtudiantDTo requestEtudiantDTo);
     void  deleteEtudiant(long etudiantId)throws EntityNotFoundException;
 
 }

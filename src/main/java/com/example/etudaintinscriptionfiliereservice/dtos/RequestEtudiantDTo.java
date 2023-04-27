@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class RequestEtudiantDTo {
-    private long id;
+    private String id;
     private long apogee;
     private String nom;
     private String prenom;

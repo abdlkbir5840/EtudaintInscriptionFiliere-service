@@ -15,7 +15,7 @@ import java.util.List;
 public class Etudiant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
     @Column(unique = true)
     private long apogee;
     private String nom;
