@@ -1,6 +1,6 @@
 package com.example.etudaintinscriptionfiliereservice.web;
 
-import com.example.etudaintinscriptionfiliereservice.dtos.FiliereResponseDto;
+
 import com.example.etudaintinscriptionfiliereservice.dtos.RequestEtudiantDto;
 import com.example.etudaintinscriptionfiliereservice.dtos.ResponseEtudiantDto;
 import com.example.etudaintinscriptionfiliereservice.exceptions.EntityNotFoundException;
@@ -60,7 +60,7 @@ public class EtudiantRestApiImpl implements  EtudiantRestApi{
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Etudiant trouvé",
                     content = {@Content(mediaType = "application/json",
-                            schema = @Schema(implementation = FiliereResponseDto.class))}),
+                            schema = @Schema(implementation = ResponseEtudiantDto.class))}),
             @ApiResponse(responseCode = "404", description = "Etudiant introuvable"),
             @ApiResponse(responseCode = "400", description = "Apogee étudiante invalide")
     })
@@ -74,7 +74,7 @@ public class EtudiantRestApiImpl implements  EtudiantRestApi{
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "étudiant créé",
                     content = {@Content(mediaType = "application/json",
-                            schema = @Schema(implementation = FiliereResponseDto.class))}),
+                            schema = @Schema(implementation = ResponseEtudiantDto.class))}),
             @ApiResponse(responseCode = "400", description = "Données étudiantes invalides "),
             @ApiResponse(responseCode = "409", description = "étudiant  exist deja")
     })
