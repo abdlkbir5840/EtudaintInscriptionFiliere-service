@@ -11,6 +11,6 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface EtudiantMapper {
     ResponseEtudiantDto fromModel(Etudiant etudiant );
-    List<ResponseEtudiantDto> fromModel(List<Etudiant> etudiant );
+    List<ResponseEtudiantDto> fromModels(List<Etudiant> etudiant );
     Etudiant toModel(RequestEtudiantDto requestEtudiantDTo);
 }
