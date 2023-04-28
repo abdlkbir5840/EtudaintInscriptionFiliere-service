@@ -10,8 +10,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableFeignClients
 public class EtudaintInscriptionFiliereServiceApplication {
 
-
-
     public static void main(String[] args) {
         SpringApplication.run(EtudaintInscriptionFiliereServiceApplication.class, args);
 

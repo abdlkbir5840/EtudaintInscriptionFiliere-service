@@ -4,6 +4,7 @@ import com.example.etudaintinscriptionfiliereservice.dtos.FiliereRequestDto;
 import com.example.etudaintinscriptionfiliereservice.dtos.FiliereResponseDto;
 import com.example.etudaintinscriptionfiliereservice.entities.Filiere;
 import org.mapstruct.Mapper;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 

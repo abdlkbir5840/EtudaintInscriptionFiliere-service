@@ -1,5 +1,6 @@
 package com.example.etudaintinscriptionfiliereservice.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,5 +26,6 @@ public class Etudiant {
     private String ville;
     private String adress;
     @OneToOne(mappedBy = "etudiant", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private Inscription inscription;
 }

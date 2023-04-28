@@ -9,6 +9,8 @@ import com.example.etudaintinscriptionfiliereservice.exceptions.InvalidEntityExc
 import com.example.etudaintinscriptionfiliereservice.mappers.FiliereMapper;
 import com.example.etudaintinscriptionfiliereservice.repositories.FiliereRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -22,8 +24,8 @@ import java.util.UUID;
  */
 @Service
 @Transactional
+@Component
 public class FiliereServiceImple implements FiliereService {
-
     private final FiliereRepository filiereRepository;
     private final FiliereMapper filiereMapper;
 
@@ -67,7 +69,7 @@ public class FiliereServiceImple implements FiliereService {
      */
     @Override
     public FiliereResponseDto getFiliereByNmae(String name) throws EntityNotFoundException, MethodArgumentNotValidException {
-        Optional<Filiere> filiere = Optional.ofNullable(filiereRepository.findByName(name));
+        Optional<Filiere> filiere = filiereRepository.findByName(name);
         if(!filiere.isPresent()) throw new EntityNotFoundException("No filiere with name "+name+" were found");
         return filiereMapper.fromModel(filiere.get());
     }
@@ -82,7 +84,7 @@ public class FiliereServiceImple implements FiliereService {
     @Override
     public FiliereResponseDto save(FiliereRequestDto filiereRequestDto) throws EntityAlreadyExistException, InvalidEntityException {
         if (filiereRequestDto.equals(null))throw new InvalidEntityException("Filiere Not Valid");
-        Optional<Filiere> filiere = Optional.ofNullable(filiereRepository.findByName(filiereRequestDto.getName()));
+        Optional<Filiere> filiere = filiereRepository.findByName(filiereRequestDto.getName());
         if(filiere.isPresent()) throw new EntityAlreadyExistException("Filiere with name "+filiereRequestDto.getName()+" already exists");
         filiereRequestDto.setIdFiliere(UUID.randomUUID().toString());
         return filiereMapper.fromModel(filiereRepository.save(filiereMapper.toModel(filiereRequestDto)));

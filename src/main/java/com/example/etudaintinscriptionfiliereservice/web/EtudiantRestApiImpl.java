@@ -14,6 +14,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,7 +26,7 @@ import javax.validation.Valid;
 import java.util.List;
 @RestController
 @RequestMapping("/Etudiants")
-
+@Tag(name = "Etudiant API", description = "API for managing Etudiant")
 public class EtudiantRestApiImpl implements  EtudiantRestApi{
     private  final EtudiantService etudiantService;
 
@@ -109,6 +110,5 @@ public class EtudiantRestApiImpl implements  EtudiantRestApi{
     public void delete(@Parameter(required = true)
              @PathVariable String id) throws EntityNotFoundException {
         etudiantService.deleteEtudiant(id);
-
     }
 }
