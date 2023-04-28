@@ -7,6 +7,7 @@ import com.example.etudaintinscriptionfiliereservice.entities.Inscription;
 import com.example.etudaintinscriptionfiliereservice.exceptions.EntityAlreadyExistException;
 import com.example.etudaintinscriptionfiliereservice.exceptions.EntityNotFoundException;
 import com.example.etudaintinscriptionfiliereservice.exceptions.InvalidEntityException;
+import com.example.etudaintinscriptionfiliereservice.mappers.EtudiantMapper;
 import com.example.etudaintinscriptionfiliereservice.mappers.InscriptionMapper;
 import com.example.etudaintinscriptionfiliereservice.repositories.InscriptionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +25,12 @@ import java.util.UUID;
 public class InscriptionServiceImpl implements InscriptionService{
     private final InscriptionRepository inscriptionRepository;
     private final InscriptionMapper inscriptionMapper;
+    private final EtudiantMapper etudiantMapper;
     @Autowired
-    public InscriptionServiceImpl(InscriptionRepository inscriptionRepository, InscriptionMapper inscriptionMapper) {
+    public InscriptionServiceImpl(InscriptionRepository inscriptionRepository, InscriptionMapper inscriptionMapper, EtudiantMapper etudiantMapper) {
         this.inscriptionRepository = inscriptionRepository;
         this.inscriptionMapper = inscriptionMapper;
+        this.etudiantMapper = etudiantMapper;
     }
     /**
      * Retrieves a list of all {@link Inscription} entities from the database.
@@ -62,8 +65,8 @@ public class InscriptionServiceImpl implements InscriptionService{
     @Override
     public InscriptionResponseDto save(InscriptionRequestDto inscriptionRequestDto) throws EntityAlreadyExistException, InvalidEntityException {
         if(inscriptionRequestDto.equals(null))throw new InvalidEntityException("Inscription not valid");
-        if(inscriptionRepository.existsByEtudiant(inscriptionRequestDto.getEtudiant()))
-            throw new EntityAlreadyExistException("Inscription with Etudiant "+inscriptionRequestDto.getEtudiant().getApogee()+" already exists");
+        if(inscriptionRepository.existsByEtudiant(etudiantMapper.toModel(inscriptionRequestDto.getRequestEtudiantDto())))
+            throw new EntityAlreadyExistException("Inscription with Etudiant "+inscriptionRequestDto.getRequestEtudiantDto().getApogee()+" already exists");
         inscriptionRequestDto.setIdInscription(UUID.randomUUID().toString());
         inscriptionRequestDto.setDateInscripton(new Date());
         return inscriptionMapper.fromModel(

@@ -15,5 +15,5 @@ public class InscriptionResponseDto {
     private String idInscription;
     private Date dateInscripton;
     private Filiere filiere;
-    private Etudiant etudiant;
+    private ResponseEtudiantDto responseEtudiantDto;
 }
