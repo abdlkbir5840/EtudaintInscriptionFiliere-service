@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class RequestEtudiantDto {
     private String id;
-    private String apogee;
+    private Long apogee;
     private String nom;
     private String prenom;
     private String lastname;

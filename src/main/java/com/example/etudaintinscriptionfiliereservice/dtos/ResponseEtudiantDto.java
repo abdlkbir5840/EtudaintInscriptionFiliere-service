@@ -6,7 +6,7 @@ import lombok.Data;
 public class ResponseEtudiantDto {
 
     private String id;
-    private String apogee;
+    private Long apogee;
     private String firstname;
     private String lastname;
     private Long tel;

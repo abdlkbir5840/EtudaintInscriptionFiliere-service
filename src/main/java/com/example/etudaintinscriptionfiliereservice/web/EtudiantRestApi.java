@@ -13,7 +13,7 @@ public interface EtudiantRestApi {
     @GetMapping(path = "/id/{id}")
     ResponseEtudiantDto findEtudiantById(@PathVariable String id);
     @GetMapping(path = "/apogee/{apogee}")
-    ResponseEtudiantDto findEtudiantByApogee(@PathVariable String apogee) throws MethodArgumentNotValidException;
+    ResponseEtudiantDto findEtudiantByApogee(@PathVariable Long apogee) throws MethodArgumentNotValidException;
     @PostMapping
     ResponseEtudiantDto saveEtudiant(@RequestBody RequestEtudiantDto requestEtudiantDto);
     @PutMapping

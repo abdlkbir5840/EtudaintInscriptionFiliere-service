@@ -14,10 +14,9 @@ import java.util.List;
 @AllArgsConstructor
 public class Etudiant {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     @Column(unique = true)
-    private String apogee;
+    private Long apogee;
     private String nom;
     private String prenom;
     private String email;
@@ -25,7 +24,6 @@ public class Etudiant {
     private Long tel;
     private String ville;
     private String adress;
-    @OneToOne(mappedBy = "etudiant")
-    private Inscription inscriptions;
-
+    @OneToOne(mappedBy = "etudiant", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Inscription inscription;
 }

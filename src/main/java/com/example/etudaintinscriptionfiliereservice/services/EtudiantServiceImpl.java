@@ -35,15 +35,14 @@ public class EtudiantServiceImpl implements EtudiantService {
         return etudiantMapper.fromModel(etudiantRepository.findAll());
     }
 
-    //Verifier
     @Override
     public ResponseEtudiantDto getEtudiantById(String idEtudiant) throws EntityNotFoundException {
-        Etudiant etudiant=etudiantRepository.findById(Long.valueOf(idEtudiant)).orElseThrow(()->new EntityNotFoundException("L' ID: "+idEtudiant+"n'existe pas"));
+        Etudiant etudiant=etudiantRepository.findById(idEtudiant).orElseThrow(()->new EntityNotFoundException("L' ID: "+idEtudiant+"n'existe pas"));
         return etudiantMapper.fromModel(etudiant);
    }
-    //prob re voire
+
     @Override
-    public ResponseEtudiantDto getEtudiantByApogee(String apogee) throws EntityNotFoundException{
+    public ResponseEtudiantDto getEtudiantByApogee(Long apogee) throws EntityNotFoundException{
         Optional<Etudiant> etudiant = Optional.ofNullable(etudiantRepository.findByApogee(apogee));
         if(!etudiant.isPresent()) throw new EntityNotFoundException("L' APOGEE: "+apogee+"n'existe pas");
         return etudiantMapper.fromModel(etudiant.get());
@@ -55,20 +54,22 @@ public class EtudiantServiceImpl implements EtudiantService {
             throw new InvalidEntityException("L'etudiant n'existe pas");
         Optional<Etudiant> etudiant = Optional.ofNullable(etudiantRepository.findByApogee(requestEtudiantDTo.getApogee()));
         if(etudiant.isPresent()) throw new EntityAlreadyExistException(" L' APOGEE: "+requestEtudiantDTo.getApogee()+"existe deja");
-        requestEtudiantDTo.setApogee(UUID.randomUUID().toString());
+        requestEtudiantDTo.setId(UUID.randomUUID().toString());
+        Long uniqueApogee = System.currentTimeMillis();
+        requestEtudiantDTo.setApogee(uniqueApogee);
         return etudiantMapper.fromModel(etudiantRepository.save(etudiantMapper.toModel(requestEtudiantDTo)));
     }
 
     @Override
     public ResponseEtudiantDto updateEtudiant(RequestEtudiantDto requestEtudiantDTo) throws InvalidEntityException {
-        if(requestEtudiantDTo.equals(null)) throw new InvalidEntityException("**");
+        if(requestEtudiantDTo.equals(null)) throw new InvalidEntityException("Etudiant Not Valid");
         return etudiantMapper.fromModel(etudiantRepository.save(etudiantMapper.toModel(requestEtudiantDTo)));
     }
 
     @Override
     public void deleteEtudiant(String etudiantId) throws EntityNotFoundException {
-        if(!etudiantRepository.findById(Long.valueOf(etudiantId)).isPresent()) throw new EntityNotFoundException("l' etudiant du ID "+etudiantId+" n'existe pas");
-        etudiantRepository.deleteById(Long.valueOf(etudiantId));
+        if(!etudiantRepository.findById(etudiantId).isPresent()) throw new EntityNotFoundException("l' etudiant du ID "+etudiantId+" n'existe pas");
+        etudiantRepository.deleteById(etudiantId);
     }
 
     }

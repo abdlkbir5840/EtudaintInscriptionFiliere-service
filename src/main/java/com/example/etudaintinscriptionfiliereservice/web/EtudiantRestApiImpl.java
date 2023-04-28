@@ -2,7 +2,9 @@ package com.example.etudaintinscriptionfiliereservice.web;
 
 
 import com.example.etudaintinscriptionfiliereservice.dtos.RequestEtudiantDto;
+
 import com.example.etudaintinscriptionfiliereservice.dtos.ResponseEtudiantDto;
+
 import com.example.etudaintinscriptionfiliereservice.exceptions.EntityNotFoundException;
 import com.example.etudaintinscriptionfiliereservice.services.EtudiantService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -56,6 +58,7 @@ public class EtudiantRestApiImpl implements  EtudiantRestApi{
         return etudiantService.getEtudiantById(id);
     }
 
+
     @Operation(summary = "Trouver étudiant par apogée", description = "Trouver un étudiant par  son apogée")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Etudiant trouvé",
@@ -65,7 +68,7 @@ public class EtudiantRestApiImpl implements  EtudiantRestApi{
             @ApiResponse(responseCode = "400", description = "Apogee étudiante invalide")
     })
     @Override
-    public ResponseEtudiantDto findEtudiantByApogee(String apogee) throws MethodArgumentNotValidException {
+    public ResponseEtudiantDto findEtudiantByApogee(Long apogee) throws MethodArgumentNotValidException {
         return etudiantService.getEtudiantByApogee(apogee);
     }
 

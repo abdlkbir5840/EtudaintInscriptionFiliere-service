@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface EtudiantRepository extends JpaRepository<Etudiant, Long> {
-    Etudiant findByApogee(String apogee);
+public interface EtudiantRepository extends JpaRepository<Etudiant, String> {
+    Etudiant findByApogee(Long apogee);
 
 }

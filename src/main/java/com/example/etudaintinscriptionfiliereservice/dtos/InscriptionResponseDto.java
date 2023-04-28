@@ -1,23 +1,19 @@
-package com.example.etudaintinscriptionfiliereservice.entities;
+package com.example.etudaintinscriptionfiliereservice.dtos;
 
+import com.example.etudaintinscriptionfiliereservice.entities.Etudiant;
+import com.example.etudaintinscriptionfiliereservice.entities.Filiere;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import java.util.Date;
 
-@Entity
+import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Inscription {
-    @Id
+public class InscriptionResponseDto {
     private String idInscription;
     private Date dateInscripton;
-    @ManyToOne
     private Filiere filiere;
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "etudiant_id")
     private Etudiant etudiant;
 }
