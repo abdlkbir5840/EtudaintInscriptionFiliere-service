@@ -1,7 +1,7 @@
 package com.example.etudaintinscriptionfiliereservice.mappers;
 
-import com.example.etudaintinscriptionfiliereservice.dtos.RequestEtudiantDTo;
-import com.example.etudaintinscriptionfiliereservice.dtos.ResponseEtudiantDTO;
+import com.example.etudaintinscriptionfiliereservice.dtos.RequestEtudiantDto;
+import com.example.etudaintinscriptionfiliereservice.dtos.ResponseEtudiantDto;
 
 import com.example.etudaintinscriptionfiliereservice.entities.Etudiant;
 import org.mapstruct.Mapper;
@@ -10,7 +10,7 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface EtudiantMapper {
-    ResponseEtudiantDTO fromModel(Etudiant etudiant );
-    List<ResponseEtudiantDTO> fromModel(List<Etudiant> etudiant );
-    Etudiant toModel(RequestEtudiantDTo requestEtudiantDTo);
+    ResponseEtudiantDto fromModel(Etudiant etudiant );
+    List<ResponseEtudiantDto> fromModel(List<Etudiant> etudiant );
+    Etudiant toModel(RequestEtudiantDto requestEtudiantDTo);
 }

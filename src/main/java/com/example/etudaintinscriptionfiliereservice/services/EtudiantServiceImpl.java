@@ -1,10 +1,9 @@
 package com.example.etudaintinscriptionfiliereservice.services;
 
 
-import com.example.etudaintinscriptionfiliereservice.dtos.RequestEtudiantDTo;
-import com.example.etudaintinscriptionfiliereservice.dtos.ResponseEtudiantDTO;
+import com.example.etudaintinscriptionfiliereservice.dtos.RequestEtudiantDto;
+import com.example.etudaintinscriptionfiliereservice.dtos.ResponseEtudiantDto;
 import com.example.etudaintinscriptionfiliereservice.entities.Etudiant;
-import com.example.etudaintinscriptionfiliereservice.entities.Filiere;
 import com.example.etudaintinscriptionfiliereservice.exceptions.EntityAlreadyExistException;
 import com.example.etudaintinscriptionfiliereservice.exceptions.EntityNotFoundException;
 import com.example.etudaintinscriptionfiliereservice.exceptions.InvalidEntityException;
@@ -32,26 +31,26 @@ public class EtudiantServiceImpl implements EtudiantService {
         this.etudiantMapper = etudiantMapper;
     }
     @Override
-    public  List<ResponseEtudiantDTO> getAllEtudiants(){
+    public  List<ResponseEtudiantDto> getAllEtudiants(){
         return etudiantMapper.fromModel(etudiantRepository.findAll());
     }
 
     //Verifier
     @Override
-    public ResponseEtudiantDTO getEtudiantById(String idEtudiant) throws EntityNotFoundException {
+    public ResponseEtudiantDto getEtudiantById(String idEtudiant) throws EntityNotFoundException {
         Etudiant etudiant=etudiantRepository.findById(Long.valueOf(idEtudiant)).orElseThrow(()->new EntityNotFoundException("L' ID: "+idEtudiant+"n'existe pas"));
         return etudiantMapper.fromModel(etudiant);
    }
     //prob re voire
     @Override
-    public ResponseEtudiantDTO getEtudiantByApogee(String apogee) throws EntityNotFoundException{
+    public ResponseEtudiantDto getEtudiantByApogee(String apogee) throws EntityNotFoundException{
         Optional<Etudiant> etudiant = Optional.ofNullable(etudiantRepository.findByApogee(apogee));
         if(!etudiant.isPresent()) throw new EntityNotFoundException("L' APOGEE: "+apogee+"n'existe pas");
         return etudiantMapper.fromModel(etudiant.get());
     }
 
     @Override
-    public ResponseEtudiantDTO addEtudiant(RequestEtudiantDTo requestEtudiantDTo) throws EntityAlreadyExistException , InvalidEntityException {
+    public ResponseEtudiantDto addEtudiant(RequestEtudiantDto requestEtudiantDTo) throws EntityAlreadyExistException , InvalidEntityException {
         if(requestEtudiantDTo.equals(null))
             throw new InvalidEntityException("L'etudiant n'existe pas");
         Optional<Etudiant> etudiant = Optional.ofNullable(etudiantRepository.findByApogee(requestEtudiantDTo.getApogee()));
@@ -61,7 +60,7 @@ public class EtudiantServiceImpl implements EtudiantService {
     }
 
     @Override
-    public ResponseEtudiantDTO updateEtudiant(RequestEtudiantDTo requestEtudiantDTo) throws InvalidEntityException {
+    public ResponseEtudiantDto updateEtudiant(RequestEtudiantDto requestEtudiantDTo) throws InvalidEntityException {
         if(requestEtudiantDTo.equals(null)) throw new InvalidEntityException("**");
         return etudiantMapper.fromModel(etudiantRepository.save(etudiantMapper.toModel(requestEtudiantDTo)));
     }

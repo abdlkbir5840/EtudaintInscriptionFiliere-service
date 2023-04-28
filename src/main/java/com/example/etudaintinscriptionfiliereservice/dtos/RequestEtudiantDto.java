@@ -3,7 +3,7 @@ package com.example.etudaintinscriptionfiliereservice.dtos;
 import lombok.Data;
 
 @Data
-public class RequestEtudiantDTo {
+public class RequestEtudiantDto {
     private String id;
     private String apogee;
     private String nom;
