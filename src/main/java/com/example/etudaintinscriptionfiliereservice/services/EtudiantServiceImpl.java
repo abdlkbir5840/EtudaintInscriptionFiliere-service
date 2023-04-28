@@ -66,9 +66,9 @@ public class EtudiantServiceImpl implements EtudiantService {
     }
 
     @Override
-    public void deleteEtudiant(long etudiantId) throws EntityNotFoundException {
-        if(!etudiantRepository.findById(etudiantId).isPresent()) throw new EntityNotFoundException("l' etudiant du ID "+etudiantId+" n'existe pas");
-        etudiantRepository.deleteById(etudiantId);
+    public void deleteEtudiant(String etudiantId) throws EntityNotFoundException {
+        if(!etudiantRepository.findById(Long.valueOf(etudiantId)).isPresent()) throw new EntityNotFoundException("l' etudiant du ID "+etudiantId+" n'existe pas");
+        etudiantRepository.deleteById(Long.valueOf(etudiantId));
     }
 
     }

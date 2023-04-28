@@ -15,7 +15,7 @@ public interface EtudiantService {
     ResponseEtudiantDto getEtudiantByApogee(String apogee);
     ResponseEtudiantDto addEtudiant(RequestEtudiantDto requestEtudiantDTo)throws EntityAlreadyExistException;
     ResponseEtudiantDto updateEtudiant(RequestEtudiantDto requestEtudiantDTo);
-    void  deleteEtudiant(long etudiantId)throws EntityNotFoundException;
+    void  deleteEtudiant(String etudiantId)throws EntityNotFoundException;
 
 }
 
