@@ -32,7 +32,7 @@ public class EtudiantServiceImpl implements EtudiantService {
     }
     @Override
     public  List<ResponseEtudiantDto> getAllEtudiants(){
-        return etudiantMapper.fromModel(etudiantRepository.findAll());
+        return etudiantMapper.fromModels(etudiantRepository.findAll());
     }
 
     @Override
@@ -63,7 +63,9 @@ public class EtudiantServiceImpl implements EtudiantService {
     @Override
     public ResponseEtudiantDto updateEtudiant(RequestEtudiantDto requestEtudiantDTo) throws InvalidEntityException {
         if(requestEtudiantDTo.equals(null)) throw new InvalidEntityException("Etudiant Not Valid");
-        return etudiantMapper.fromModel(etudiantRepository.save(etudiantMapper.toModel(requestEtudiantDTo)));
+        ResponseEtudiantDto saved =etudiantMapper.fromModel(etudiantRepository.save(etudiantMapper.toModel(requestEtudiantDTo)));
+        if(saved!= null)  return saved;
+        else throw new EntityNotFoundException("etudiant not found");
     }
 
     @Override

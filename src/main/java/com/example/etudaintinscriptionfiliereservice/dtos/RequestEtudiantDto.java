@@ -8,7 +8,6 @@ public class RequestEtudiantDto {
     private Long apogee;
     private String nom;
     private String prenom;
-    private String lastname;
     private Long tel;
     private String ville;
     private String adress;
